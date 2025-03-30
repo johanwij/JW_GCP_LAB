@@ -4,7 +4,7 @@ data "google_compute_subnetwork" "dev_mgmt_subnet" {
   project = var.project_id         
 }
 
-data "google_compute_subnetwork" "prod_mgmt_subneT" {
+data "google_compute_subnetwork" "prod_mgmt_subnet" {
   name    = "prod-mgmt-subnet"
   region  = var.region             
   project = var.project_id         
