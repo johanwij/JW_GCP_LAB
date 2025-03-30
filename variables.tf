@@ -149,7 +149,7 @@ variable "num_nodes" {
 variable "network_subnet_Dev" {
   description = "Machine type for GKE nodes"
   type        = string
-  default     = "https://www.googleapis.com/compute/v1/projects/$project_id/regions/$region/subnetworks/griffin-dev-mgmt"
+  default     = "https://www.googleapis.com/compute/v1/projects/var.project_id/regions/var.region/subnetworks/griffin-dev-mgmt"
 }
 
 variable "network_subnet_Prod" {
