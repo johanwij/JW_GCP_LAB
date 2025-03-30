@@ -7,6 +7,7 @@ resource "google_sql_database_instance" "db_instance" {
   root_password = var.db_root_password
   settings {
     tier = "db-f1-micro" # Or a suitable tier
+    availability_type = "ZONAL"
     ip_configuration {
       authorized_networks {
         name  = "Allow public access" #Replace with better name.
