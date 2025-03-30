@@ -22,9 +22,3 @@ resource "google_compute_subnetwork" "prod_mgmt_subnet" {
   network       = google_compute_network.vpc_prod.id
   region        = var.region
 }
-
-data "google_compute_subnetwork" "prod_mgmt_subnet" {
-  name    = "prod-mgmt-subnet"
-  region  = var.region             
-  project = var.project_id         
-}
