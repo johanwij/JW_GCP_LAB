@@ -1,5 +1,6 @@
 # 1. Create Kubernetes cluster
 resource "google_container_cluster" "gke_cluster" {
+  project  = var.project_id
   name     = var.cluster_name
   location = var.ZONE
   network  = var.vpc_name_dev
