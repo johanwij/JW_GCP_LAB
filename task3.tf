@@ -1,6 +1,7 @@
 # 1. Create the bastion host with two network interfaces
 
 resource "google_compute_instance" "bastion" {
+  project      = var.project_id
   name         = var.bastion_name
   machine_type = var.bastion_machine_type
   zone         = var.ZONE
@@ -30,6 +31,7 @@ resource "google_compute_instance" "bastion" {
 
 # 2. Firewall rule for development VPC
 resource "google_compute_firewall" "allow_ssh_dev" {
+  project = var.project_id
   name    = var.firewall_rule_name_dev
   network = var.vpc_name_dev
   allow {
@@ -42,6 +44,7 @@ resource "google_compute_firewall" "allow_ssh_dev" {
 
 # 3. Firewall rule for production VPC
 resource "google_compute_firewall" "allow_ssh_prod" {
+  project = var.project_id
   name    = var.firewall_rule_name_prod
   network = var.vpc_name_prod
   allow {
