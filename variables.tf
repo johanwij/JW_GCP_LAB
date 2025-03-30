@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "The ID of the Google Cloud project"
   type        = string
-  default     = "qwiklabs-gcp-01-f4ed4b98d231" # Replace with your project ID
+  default     = "qwiklabs-gcp-04-ca000f50498d" # Replace with your project ID
 }
 
 variable "region" {
