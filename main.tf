@@ -5,7 +5,7 @@ resource "google_compute_network" "vpc_dev" {
   description             = "Development VPC"
 }
 
-resource "google_compute_subnetwork" "dev_wp_subnet" {
+resource "google_compute_subnetwork" "griffin-dev-wp_subnet" {
   project       = var.project_id
   name          = var.subnet_1_name_dev
   ip_cidr_range = var.subnet_1_cidr_dev
@@ -13,7 +13,7 @@ resource "google_compute_subnetwork" "dev_wp_subnet" {
   region        = var.region
 }
 
-resource "google_compute_subnetwork" "dev_mgmt_subnet" {
+resource "google_compute_subnetwork" "griffin-dev-mgmt_subnet" {
   project       = var.project_id
   name          = var.subnet_2_name_dev
   ip_cidr_range = var.subnet_2_cidr_dev
@@ -28,7 +28,7 @@ resource "google_compute_network" "vpc_prod" {
   description             = "Production VPC"
 }
 
-resource "google_compute_subnetwork" "prod_wp_subnet" {
+resource "google_compute_subnetwork" "griffin-prod-wp_subnet" {
   project       = var.project_id
   name          = var.subnet_1_name_prod
   ip_cidr_range = var.subnet_1_cidr_prod
@@ -36,7 +36,7 @@ resource "google_compute_subnetwork" "prod_wp_subnet" {
   region        = var.region
 }
 
-resource "google_compute_subnetwork" "prod_mgmt_subnet" {
+resource "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
   project       = var.project_id
   name          = var.subnet_2_name_prod
   ip_cidr_range = var.subnet_2_cidr_prod
@@ -57,14 +57,14 @@ resource "google_compute_instance" "bastion" {
   }
 
    network_interface {
-     subnetwork = data.google_compute_subnetwork.dev_mgmt_subnet.id
+     subnetwork = data.google_compute_subnetwork.griffin-dev-mgmt_subnet.id
      access_config {
        // Assign an external IP to the bastion host for SSH access
      }
   }
 
    network_interface {
-     subnetwork = data.google_compute_subnetwork.prod_mgmt_subnet.id
+     subnetwork = data.google_compute_subnetwork.griffin-prod-mngt_subnet.id
      }
   }
 
