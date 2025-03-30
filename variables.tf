@@ -1,19 +1,19 @@
 variable "project_id" {
   description = "The ID of the Google Cloud project"
   type        = string
-  default     = "qwiklabs-gcp-01-5ec123fab6d1" # Replace with your project ID
+  default     = "qwiklabs-gcp-04-c9bba69bfd76" # Replace with your project ID
 }
 
 variable "region" {
   description = "The Google Cloud region"
   type        = string
-  default     = "us-west1" # Replace with your desired region
+  default     = "us-central1" # Replace with your desired region
 }
 
 variable "zone" {
   description = "The Google Cloud ZONE"
   type        = string
-  default     = "us-west1-a" # Replace with your desired zone
+  default     = "us-central1-f" # Replace with your desired zone
 }
 
 variable "vpc_name_dev" {
