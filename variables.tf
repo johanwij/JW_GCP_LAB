@@ -7,13 +7,13 @@ variable "project_id" {
 variable "region" {
   description = "The Google Cloud region"
   type        = string
-  default     = "us-central1" # Replace with your desired region
+  default     = "us-east4" # Replace with your desired region
 }
 
 variable "ZONE" {
   description = "The Google Cloud ZONE"
   type        = string
-  default     = "us-central1-f" # Replace with your desired zone
+  default     = "us-east4-a" # Replace with your desired zone
 }
 
 variable "vpc_name_dev" {
