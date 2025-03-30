@@ -50,8 +50,8 @@ resource "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
   region        = var.region
 }
 
-data "google_compute_subnetwork" "griffin-prod-mgmt_subnet" {
-  name    = "griffin-prod-mgmt-subnet"
+data "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
+  name    = "griffin-prod-mngt-subnet"
   region  = var.region             
   project = var.project_id         
 }
