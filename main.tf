@@ -42,7 +42,7 @@ resource "google_compute_subnetwork" "griffin-prod-wp_subnet" {
   region        = var.region
 }
 
-resource "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
+resource "google_compute_subnetwork" "griffin-prod-mgmt_subnet" {
   project       = var.project_id
   name          = var.subnet_2_name_prod
   ip_cidr_range = var.subnet_2_cidr_prod
@@ -50,8 +50,8 @@ resource "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
   region        = var.region
 }
 
-data "google_compute_subnetwork" "griffin-prod-mngt_subnet" {
-  name    = "griffin-prod-mngt-subnet"
+data "google_compute_subnetwork" "griffin-prod-mgmt_subnet" {
+  name    = "griffin-prod-mgmt-subnet"
   region  = var.region             
   project = var.project_id         
 }
@@ -76,7 +76,7 @@ resource "google_compute_instance" "bastion" {
   }
 
    network_interface {
-     subnetwork = data.google_compute_subnetwork.griffin-prod-mngt_subnet.id
+     subnetwork = data.google_compute_subnetwork.griffin-prod-mgmt_subnet.id
      }
   }
 
