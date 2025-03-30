@@ -1,43 +1,43 @@
 variable "project_id" {
   description = "The ID of the Google Cloud project"
   type        = string
-  default     = "your-project-id" # Replace with your project ID
+  default     = "qwiklabs-gcp-01-c5fa9701323a" 
 }
 
 variable "region" {
   description = "The Google Cloud region"
   type        = string
-  default     = "us-central1" # Replace with your desired region
+  default     = "us-west1" 
 }
 
 variable "zone" {
   description = "The Google Cloud ZONE"
   type        = string
-  default     = "us-central1-a" # Replace with your desired zone
+  default     = "us-west1-a" 
 }
 
 variable "vpc_name_dev" {
   description = "Name of the development VPC network"
   type        = string
-  default     = "griffin-dev-vpc" # Replace with your desired VPC name
+  default     = "griffin-dev-vpc" 
 }
 
 variable "subnet_1_name_dev" {
   description = "Name of the first development subnet"
   type        = string
-  default     = "griffin-dev-wp" # Replace with your desired subnet name
+  default     = "griffin-dev-wp" 
 }
 
 variable "subnet_2_name_dev" {
   description = "Name of the second development subnet"
   type        = string
-  default     = "griffin-dev-mgmt" # Replace with your desired subnet name
+  default     = "griffin-dev-mgmt" 
 }
 
 variable "subnet_1_cidr_dev" {
   description = "CIDR range for the first development subnet"
   type        = string
-  default     = "92.168.16.0/20" # Replace with your desired CIDR range
+  default     = "92.168.16.0/20" 
 }
 
 variable "subnet_2_cidr_dev" {
