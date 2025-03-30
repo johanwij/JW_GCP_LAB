@@ -20,19 +20,6 @@ resource "kubernetes_secret" "db_user" {
   }
 }
 
-# 3. Create service account for cloud sql proxy
-resource "google_service_account" "cloud_sql_proxy_sa" {
-  account_id   = "cloud-sql-proxy"
-  display_name = "Cloud SQL Proxy Service Account"
-}
-
-# 4. create cloud sql proxy service account key.
-resource "google_service_account_key" "cloud_sql_proxy_key" {
-  service_account_id = google_service_account.cloud_sql_proxy_sa.name
-  public_key_type    = "TYPE_X509_PEM_FILE"
-}
-
-# 5. output the key file contents. This can be used to write the json key file.
 output "cloud_sql_proxy_key_json" {
   value = google_service_account_key.cloud_sql_proxy_key.private_key
   sensitive = true
