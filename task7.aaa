@@ -1,4 +1,9 @@
-# This resource will execute a local-exec provisioner to copy files from GCS to Cloud Shell.
+resource "null_resource" "create_folder" {
+  provisioner "local-exec" {
+    command = "mkdir -p ./wp-k8s/" # Creates the folder if it doesn't exist
+  }
+}
+
 resource "null_resource" "copy_files_from_gcs" {
   provisioner "local-exec" {
     command = <<EOF
@@ -7,3 +12,4 @@ resource "null_resource" "copy_files_from_gcs" {
     EOF
   }
 }
+
