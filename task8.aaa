@@ -1,0 +1,100 @@
+# 2. Create the Wordpress database
+resource "google_sql_database" "wordpress_db" {
+  project  = var.project_id
+  name     = "wordpress"
+  instance = google_sql_database_instance.db_instance.name
+}
+
+# 3. Create the wordpress user and grant privileges
+resource "google_sql_user" "wp_user" {
+  project  = var.project_id
+  name     = "wp_user"
+  instance = google_sql_database_instance.db_instance.name
+  password = var.wp_user_password
+  host     = "%" # Allows connections from any host; restrict as needed
+}
+
+# The second resource for granting privileges is not required, as the previous one does the same thing.
+
+resource "kubernetes_secret" "db_credentials" {
+  metadata {
+    name = "db-credentials"
+  }
+
+  data = {
+    db_user     = base64encode(google_sql_user.wp_user.name)
+    db_password = base64encode(var.wp_user_password)
+    db_host     = base64encode(google_sql_database_instance.db_instance.ip_address[0].ip_address)
+    db_name     = base64encode(google_sql_database.wordpress_db.name)
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "wordpress_pvc" {
+  metadata {
+    name = "wordpress-pv-claim"
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "10Gi" # Adjust storage size as needed
+      }
+    }
+    storage_class_name = "standard" # Or your preferred storage class
+  }
+}
+
+resource "kubernetes_deployment" "wordpress_deployment" {
+  metadata {
+    name = "wordpress"
+  }
+  spec {
+    replicas = 1
+    selector {
+      match_labels = {
+        app = "wordpress"
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          app = "wordpress"
+        }
+      }
+      spec {
+        container {
+          image = "wordpress:latest"
+          name  = "wordpress"
+          env_from {
+            secret_ref {
+              name = kubernetes_secret.db_credentials.metadata[0].name
+            }
+          }
+          volume_mount {
+            name       = "wordpress-persistent-storage"
+            mount_path = "/var/www/html" #WordPress install path
+          }
+          port {
+            container_port = 80
+          }
+        }
+        volume {
+          name = "wordpress-persistent-storage"
+          persistent_volume_claim {
+            claim_name = kubernetes_persistent_volume_claim.wordpress_pvc.metadata[0].name
+          }
+        }
+      }
+    }
+  }
+}
+
+output "db_user_password" {
+  value = var.wp_user_password
+  sensitive = true
+}
+
+output "db_host" {
+  value = google_sql_database_instance.db_instance.ip_address[0].ip_address
+  description = "The public IP address of the Cloud SQL instance."
+}
