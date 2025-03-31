@@ -44,3 +44,47 @@ if [ -f "task5.aaa" ]; then
 else
   echo "Error: task5.aaa does not exist."
 fi
+# Check if task6.aaa exists
+if [ -f "task6.aaa" ]; then
+  # Copy task6.aaa to task6.tf
+  cp "task6.aaa" "task6.tf"
+
+  # Check if the copy was successful
+  if [ $? -eq 0 ]; then
+    echo "Successfully copied task6.aaa to task6.tf"
+  else
+    echo "Error: Failed to copy task6.aaa to task6.tf"
+  fi
+else
+  echo "Error: task6.aaa does not exist."
+fi
+
+# Check if task7.aaa exists
+if [ -f "task7.aaa" ]; then
+  # Copy task7.aaa to task7.tf
+  cp "task7.aaa" "task7.tf"
+
+  # Check if the copy was successful
+  if [ $? -eq 0 ]; then
+    echo "Successfully copied task7.aaa to task7.tf"
+  else
+    echo "Error: Failed to copy task7.aaa to task7.tf"
+  fi
+else
+  echo "Error: task7.aaa does not exist."
+fi
+
+# Check if task8.aaa exists
+if [ -f "task8.aaa" ]; then
+  # Copy task8.aaa to task8.tf
+  cp "task8.aaa" "task8.tf"
+
+  # Check if the copy was successful
+  if [ $? -eq 0 ]; then
+    echo "Successfully copied task8.aaa to task8.tf"
+  else
+    echo "Error: Failed to copy task8.aaa to task8.tf"
+  fi
+else
+  echo "Error: task8.aaa does not exist."
+fi
